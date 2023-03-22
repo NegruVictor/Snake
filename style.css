@@ -43,10 +43,3 @@
 .container div[l="0"]{
   background-color: darkgray
 }
-.snake{
-  border-bottom: 1px solid darkgray;
-  border-right: 1px solid darkgray;
-  width:20px;
-  height:20px;
-  background-color: rgb(54, 48, 220);
-}
