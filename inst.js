@@ -3,9 +3,8 @@ const reset = document.getElementById('btnReset');
 let snake = ['139', '140'];
 let border = [];
 let head = 141;
-let direction = '';
+let direction;
 let interval = 350;
-let vertical = 17;
 let apple;
 let score = 0;
 let scoreMaxim = 0;
@@ -14,6 +13,23 @@ document.addEventListener('keydown', onKeyDown);
 document.addEventListener('click', resetGame); 
 let timer = setInterval(gameMovement, interval);
 createGameBoard();
+
+function onKeyDown(e) {
+  switch (e.key) {
+    case 'ArrowRight':
+      direction = 'r';
+      break;
+    case 'ArrowLeft':
+      direction = 'l';
+      break;
+    case 'ArrowUp':
+      direction = 'u';
+      break;
+    case 'ArrowDown':
+      direction = 'd';
+      break;
+  }
+}
 
 function resetGame() {
   for (let i = 0; i < snake.length; ++i) {
@@ -60,10 +76,10 @@ function createGameBoard() {
 }
 
 function gameMovement() {
-  let a = document.getElementById(head).id;
-  let n = Number(a);
+  let n = Number(document.getElementById(head).id);
   let h = document.getElementById(head);
   let x = document.getElementById(snake[0]);
+  let vertical = 17;
   if (gameOver(n)) {
     clearInterval(timer);
     btnReset.disabled = false;
@@ -105,22 +121,6 @@ function gameMovement() {
   }
 }
 
-function onKeyDown(e) {
-  switch (e.key) {
-    case 'ArrowRight':
-      direction = direction!='l'?'r':direction;
-      break;
-    case 'ArrowLeft':
-      direction = direction!='r'?'l':direction;
-      break;
-    case 'ArrowUp':
-      direction = direction!='d'?'u':direction;
-      break;
-    case 'ArrowDown':
-      direction = direction!='u'?'d':direction;
-      break;
-  }
-}
 
 function gameOver(head) {
   if (border.includes(head) || snake.includes(head)) {
